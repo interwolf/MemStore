@@ -1,0 +1,17 @@
+OASISFormat: 0.3
+Name:        memd
+Version:     1.0
+Synopsis:    memcached for Lwt and ocaml
+Authors:     Yiming Zhang
+License:     LGPL-2.0 with OCaml linking exception
+Plugins:     META (0.3)
+BuildTools:  ocamlbuild
+
+Executable memd
+  Path:               .
+  MainIs:             memd.ml
+  Build$:             true
+  Custom:             true		# what is it for?
+  CompiledObject:     byte
+  Install:            false
+  BuildDepends:       re, uri (>= 1.3.2), uri.services, lwt, lwt.unix, lwt.ssl, lwt.syntax 
