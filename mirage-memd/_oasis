@@ -1,0 +1,24 @@
+OASISFormat: 0.3
+Name:        mirage-memd
+Version:     0.1.0
+Synopsis:    Mirage Memcaced infrastructure
+Authors:     Yiming Zhang
+License:     ISC
+BuildTools:  ocamlbuild
+PostConfCommand: ./gen_main.sh
+PostBuildCommand: ./gen_xen.sh
+#PostDistCleanCommand: $rm main.ml
+PostCleanCommand: $rm main.ml
+
+Flag xen
+  Description: build Xen kernel
+  Default: false
+  
+Executable "main.nobj.o"
+  Path:               .
+  MainIs:             main.ml
+  Build$:             flag(xen)
+  Custom:             true
+  CompiledObject:     native_object
+  Install:            false
+  BuildDepends:       mirage, cohttp.mirage, uri, re, cow, mirage-net, lwt, lwt.syntax, re.str

@@ -95,6 +95,7 @@ let process_accept ~sockaddr ?timeout (client,_) =
 let init ~sockaddr =
 	let s = init_socket sockaddr in
 	while_lwt true do
+        (*the value returned by 'accept' will be the last parameter	of process_accept*)
 		Lwt_unix.accept s >>=
 		process_accept ~sockaddr
 	done
